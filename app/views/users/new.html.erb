@@ -1,5 +1,17 @@
 <h1>新規アカウント作成</h1>
 <%= form_with(model: @user, local: true) do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= f.label :"名前" %>
   <%= f.text_field :name %>
   <%= f.label :"プロフィール写真" %>
@@ -12,4 +24,5 @@
   <%= f.password_field :password_confirmation %>
   <br><br>
   <%= f.submit "アカウント作成" %>
+  
 <% end %>
