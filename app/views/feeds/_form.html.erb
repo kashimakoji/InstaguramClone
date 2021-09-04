@@ -18,7 +18,12 @@
     <%= form.hidden_field :image_cache %>
   </div>
 
+  <div class="content">
+    <%= form.label :"メッセージ：" %>
+    <%= form.text_field :content %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "投稿" %>
   </div>
 <% end %>
