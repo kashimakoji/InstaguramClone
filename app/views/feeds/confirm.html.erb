@@ -1,0 +1,7 @@
+<h1>確認画面</h1>
+<%= form_with(model: @feed, local:true) do |form| %>
+  <%= form.hidden_field :image %>
+  <p>画像：<%= image_tag @feed.image.url %></p>
+  <%= form.submit "登録する" %>
+  <%= form.submit '戻る', name: 'back' %>
+<% end %>

@@ -25,14 +25,17 @@ class FeedsController < ApplicationController
     @feed = Feed.new(feed_params)
     @feed.user_id = current_user.id
     #@feed = current_user.feeds.build(feed_params)
-
-    respond_to do |format|
-      if @feed.save
-        format.html { redirect_to @feed, notice: "Feed was successfully created." }
-        format.json { render :show, status: :created, location: @feed }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
+    if params[:back]
+      render :new
+    else
+      respond_to do |format|
+        if @feed.save
+          format.html { redirect_to @feed, notice: "Feed was successfully created." }
+          format.json { render :show, status: :created, location: @feed }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @feed.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -57,6 +60,11 @@ class FeedsController < ApplicationController
       format.html { redirect_to feeds_url, notice: "Feed was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def confirm
+    @feed = Feed.new(feed_params)
+    render :new if @feed.invalid?
   end
 
   private
