@@ -13,7 +13,11 @@ class FeedsController < ApplicationController
 
   # GET /feeds/new
   def new
-    @feed = Feed.new
+    if params[:back]
+      @feed = Feed.new(feed_params)
+    else
+      @feed = Feed.new
+    end
   end
 
   # GET /feeds/1/edit
@@ -22,9 +26,10 @@ class FeedsController < ApplicationController
 
   # POST /feeds or /feeds.json
   def create
-    @feed = Feed.new(feed_params)
-    @feed.user_id = current_user.id
-    #@feed = current_user.feeds.build(feed_params)
+    #byebug
+    #@feed = Feed.new(feed_params)
+    #@feed.user_id = current_user.id
+    @feed = current_user.feeds.build(feed_params)
     if params[:back]
       render :new
     else
@@ -63,7 +68,10 @@ class FeedsController < ApplicationController
   end
 
   def confirm
-    @feed = Feed.new(feed_params)
+    #byebug
+    #@feed = Feed.new(feed_params)
+    #@feed.user_id = current_user.id
+    @feed = current_user.feeds.build(feed_params)
     render :new if @feed.invalid?
   end
 
