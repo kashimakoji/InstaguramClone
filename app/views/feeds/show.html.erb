@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @feed.image %>
+  <strong>Image(画像):</strong>
+  <%= image_tag @feed.image.url %>
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>ユーザー:</strong>
   <%= @feed.user %>
 </p>
 
-<%= link_to 'Edit', edit_feed_path(@feed) %> |
-<%= link_to 'Back', feeds_path %>
+<% unless @feed.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'お気に入り解除', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りに登録', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
+<%= link_to '編集する', edit_feed_path(@feed) %> |
+<%= link_to '戻る', feeds_path %>

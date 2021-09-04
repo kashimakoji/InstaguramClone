@@ -8,6 +8,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
+    @favorite = current_user.favorites.find_by(feed_id: @feed.id)
   end
 
   # GET /feeds/new
@@ -66,6 +67,6 @@ class FeedsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def feed_params
-      params.require(:feed).permit(:image, :user_id)
+      params.require(:feed).permit(:image, :image_cache, :user_id)
     end
 end
