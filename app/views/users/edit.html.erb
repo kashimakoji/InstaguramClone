@@ -1,4 +1,4 @@
-<h1>新規アカウント作成</h1>
+<h1>プロフィールの編集</h1>
 <%= form_with(model: @user, local: true) do |f| %>
 
   <% if @user.errors.any? %>
@@ -26,6 +26,6 @@
   <%= f.label :"確認用パスワード" %>
   <%= f.password_field :password_confirmation %>
   <br><br>
-  <%= f.submit "アカウント作成" %>
+  <%= f.submit "プロフィール変更する" %>
 
 <% end %>

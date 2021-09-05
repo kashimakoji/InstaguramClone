@@ -27,7 +27,6 @@ class FeedsController < ApplicationController
 
   # POST /feeds or /feeds.json
   def create
-    #byebug
     #@feed = Feed.new(feed_params)
     #@feed.user_id = current_user.id
     @feed = current_user.feeds.build(feed_params)
@@ -88,8 +87,9 @@ class FeedsController < ApplicationController
     end
 
     def ensure_user
+      #byebug
       @feeds = current_user.feeds
-      @feed = feeds.find_by(id: params[:id])
+      @feed = @feeds.find_by(id: params[:id])
       redirect_to new_feed_path unless @feed
     end
 
