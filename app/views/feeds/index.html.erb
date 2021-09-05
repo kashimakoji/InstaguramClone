@@ -19,8 +19,13 @@
         <td><%= feed.content %></td>
         <td><%= feed.user.name %></td>
         <td><%= link_to 'Show', feed %></td>
-        <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
-        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: '削除していいですか?' } %></td>
+        <% if feed.user == current_user %>
+          <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
+          <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: '削除していいですか?' } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

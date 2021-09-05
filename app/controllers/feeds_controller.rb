@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: %i[ show edit update destroy ]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   # GET /feeds or /feeds.json
   def index
@@ -49,7 +50,7 @@ class FeedsController < ApplicationController
   def update
     respond_to do |format|
       if @feed.update(feed_params)
-        format.html { redirect_to @feed, notice: "Feed was successfully updated." }
+        format.html { redirect_to @feed, notice: "更新しました" }
         format.json { render :show, status: :ok, location: @feed }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -85,4 +86,11 @@ class FeedsController < ApplicationController
     def feed_params
       params.require(:feed).permit(:image, :image_cache, :user_id, :content)
     end
+
+    def ensure_user
+      @feeds = current_user.feeds
+      @feed = feeds.find_by(id: params[:id])
+      redirect_to new_feed_path unless @feed
+    end
+
 end
