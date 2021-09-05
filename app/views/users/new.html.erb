@@ -15,8 +15,8 @@
   <%= f.label :"名前" %>
   <%= f.text_field :name %>
   <%= f.label :"プロフィール写真" %>
-  <%= image_tag(@user.avatar.url) if @user.avatar && @user.avatar.url %>
   <%= f.file_field :avatar %>
+  <%= image_tag(@user.avatar.url) if @user.avatar && @user.avatar.url %>
   <%= f.hidden_field :image_cache %>
 
   <%= f.label :"メールアドレス" %>
