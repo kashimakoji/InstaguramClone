@@ -1,36 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Feeds_Index</h1>
+  <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>メッセージ</th>
-      <th>投稿者</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>投稿一覧(Index)</h1>
 
-  <tbody>
-    <% @feeds.each do |feed| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= image_tag feed.image.url %></td>
-        <td><%= feed.content %></td>
-        <td><%= feed.user.name %></td>
-        <td><%= link_to 'Show', feed %></td>
-        <% if feed.user == current_user %>
-          <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
-          <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: '削除していいですか?' } %></td>
-        <% else %>
-          <td></td>
-          <td></td>
-        <% end %>
+        <th>画像</th>
+        <th>メッセージ</th>
+        <th>投稿者</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @feeds.each do |feed| %>
+        <tr>
+          <td><%= image_tag feed.image.url %></td>
+          <td><%= feed.content %></td>
+          <td><%= feed.user.name %></td>
+          <td><%= link_to '詳細Show', feed %></td>
+          <% if feed.user == current_user %>
+            <td><%= link_to '編集Edit', edit_feed_path(feed) %></td>
+            <td><%= link_to '削除Destroy', feed, method: :delete, data: { confirm: '削除していいですか?' } %></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to '新しく画像を投稿する', new_feed_path %>
 
-<%= link_to '新しく画像を投稿する', new_feed_path %>
+</div>

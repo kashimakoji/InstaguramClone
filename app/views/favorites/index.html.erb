@@ -1,0 +1,26 @@
+<h1>お気に入り登録一覧(favorites_index)</h1>
+<table>
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>メッセージ</th>
+      <th>投稿者</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%#= image_tag bookmark.image.url %></td>
+        <td><%= bookmark.user_id %></td>
+        <td><%= bookmark.feed_id %></td>
+        <td><%= link_to '詳細Show', bookmark %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新しく画像を投稿する', new_feed_path %>

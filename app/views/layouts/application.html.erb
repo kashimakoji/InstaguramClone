@@ -10,18 +10,21 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class:"#{key}") %>
-    <% end %>
+    <header>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class:"#{key}") %>
+      <% end %>
 
-    <% if logged_in? %>
-      <%= link_to "プロフィール",user_path(current_user.id) %>
-      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
-    <% else %>
-      <%= link_to "アカウント作成", new_user_path %>
-      <%= link_to "ログイン", new_session_path %>
-    <% end %>
-
-    <%= yield %>
+      <% if logged_in? %>
+        <%= link_to "プロフィール",user_path(current_user.id) %>
+        <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+      <% else %>
+        <%= link_to "アカウント作成", new_user_path %>
+        <%= link_to "ログイン", new_session_path %>
+      <% end %>
+    </header>
+    <div class="conteiner">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,7 +1,11 @@
 <h1><%= @user.name %>のプロフィール（ページ）</h1>
 <p>プロフィール写真（アバター）：<%= image_tag(@user.avatar.url) if @user.avatar && @user.avatar.url %></p>
 <p>メールアドレス：<%= @user.mail %></p>
-
+<br><br>
+<%= link_to "お気に入り登録一覧", favorites_path %>
+<br><br>
+<%= link_to "投稿一覧を見る", feeds_path %>
+<br><br>
 <%= link_to "新しいを写真投稿", new_feed_path %>
-<br>
+<br><br>
 <%= link_to "プロフィールの編集", edit_user_path  %>
