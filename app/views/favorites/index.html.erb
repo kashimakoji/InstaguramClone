@@ -1,4 +1,4 @@
-<h1>お気に入り登録一覧(favorites_index)</h1>
+<h2><%= @user.name %>のお気に入り一覧(favorites_index)</h2>
 <table>
   <thead>
     <tr>
@@ -10,12 +10,12 @@
   </thead>
 
   <tbody>
-    <% @bookmarks.each do |bookmark| %>
+    <% @favorites.each do |favorite| %>
       <tr>
-        <td><%#= image_tag bookmark.image.url %></td>
-        <td><%= bookmark.user_id %></td>
-        <td><%= bookmark.feed_id %></td>
-        <td><%= link_to '詳細Show', bookmark %></td>
+        <td><%#= image_tag favorite.image.url %></td>
+        <td><%= image_tag favorite.feed.image.url %></td>
+        <td><%= favorite.feed.content %></td>
+        <td><%= favorite.feed.user.name %></td>
       </tr>
     <% end %>
   </tbody>

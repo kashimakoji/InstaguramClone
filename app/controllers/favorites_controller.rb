@@ -12,7 +12,7 @@ class FavoritesController < ApplicationController
 
   def index
     @user = current_user
-    @bookmarks = Favorite.where(user_id: @user.id).all
+    @favorites = Favorite.where(user_id: @user.id).all
     #byebug
   end
 
